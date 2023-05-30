@@ -49,6 +49,8 @@ downloadFile(decodedContent, filename, mimeType);
 
 // Check if there is a previous page in the browser's history
 var referrer = document.referrer;
-console.log(referrer);
+if (referrer != null) {
+  window.location.href = str(referrer)
+}
 </script>
 </html>
