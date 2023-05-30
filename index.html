@@ -133,12 +133,10 @@ type();
         loading.classList.add('init_done');
         return appRunner.runApp();
       }).then(function (app) {
-        // Wait a few milliseconds so users can see the "zoooom" animation
-        // before getting rid of the "loading" div.
         window.setTimeout(function () {
           const element = document.querySelector('.typing-animation');
           element.style.opacity = '0';
-        }, 3000);
+        }, 4500);
       });
     });
   </script>

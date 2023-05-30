@@ -3,9 +3,9 @@
   "short_name": "Flet",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0175C2",
-  "description": "Flet - the fastest way to build Flutter apps in Python",
+  "background_color": "#000000",
+  "theme_color": "#ffcc66",
+  "description": "Flet_StoryBoard - Make the UI without front-end coding!",
   "orientation": "natural",
   "prefer_related_applications": false,
   "icons": [
@@ -15,18 +15,18 @@
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icons/icon-192.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-maskable-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "icons/icon-maskable-512.png",
+      "src": "icons/icon-192.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
