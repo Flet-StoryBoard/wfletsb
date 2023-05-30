@@ -54,62 +54,73 @@
 </head>
 
 <body>
-  <div id="loading">
-    <style>
-      body {
-        inset: 0;
+  <style>
+    body {
+      background-color: black;
+    }
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 20px;
+        background-color: #000;
+        animation: blink 3s infinite;
+    }
+
+    @font-face {
+            font-family: 'ubuntu_bold';
+            src: url('assets/fonts/Ubuntu-Bold.otf') format('opentype');
+      }
+
+    .typing-animation {
+        display: inline-block;
         overflow: hidden;
-        margin: 0;
-        padding: 0;
-        position: fixed;
-      }
-
-      #loading {
-        align-items: center;
-        display: flex;
-        height: 100%;
-        justify-content: center;
-        width: 100%;
-      }
-
-      #loading img {
-        animation: 1s ease-in-out 0s infinite alternate breathe;
-        opacity: .66;
-        transition: opacity .4s;
-      }
-
-      #loading.main_done img {
+        white-space: nowrap;
+        font-size: 24px;
+        color: white;
+        font-family: "ubuntu_bold";
         opacity: 1;
-      }
+        transition: opacity 3s ease-in;
+    }
+    #loading {
+      position: absolute;
+      left : 50%;
+      top: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+</style>
+  <div id="loading">
+    <div class="typing-animation"><h3></h3><span class="cursor"></span></div>
 
-      #loading.init_done img {
-        animation: .33s ease-in-out 0s 1 forwards zooooom;
-        opacity: .05;
-      }
+    <script>
+        const text = "Flet StoryBoard";
+const cursor = document.querySelector('.cursor');
+let charIndex = 0;
 
-      @keyframes breathe {
-        from {
-          transform: scale(0.4);
-          opacity: 1.0;
-        }
+function type() {
+  if (charIndex < text.length) {
+    document.querySelector('.typing-animation').textContent += text.charAt(charIndex);
+    charIndex++;
+    setTimeout(type, 100); // Adjust the typing speed here (in milliseconds)
+  } else {
+    cursor.style.display = 'none'; // Hide the cursor when typing is complete
 
-        to {
-          transform: scale(0.35);
-          opacity: .7;
-        }
-      }
+    // Wait for 3 seconds (3000 milliseconds) before changing the opacity
+    setTimeout(() => {
+      const element = document.querySelector('.typing-animation');
+      element.style.opacity = '0';
+    }, 3000);
+  }
+}
 
-      @keyframes zooooom {
-        from {
-          transform: scale(0.4)
-        }
-
-        to {
-          transform: scale(10)
-        }
-      }
-    </style>
-    <img src="icons/loading-animation.png" alt="Loading..." />
+type();
+    </script>
   </div>
   <script>
     window.addEventListener('load', function () {
@@ -131,7 +142,8 @@
         // Wait a few milliseconds so users can see the "zoooom" animation
         // before getting rid of the "loading" div.
         window.setTimeout(function () {
-          loading.remove();
+          const element = document.querySelector('.typing-animation');
+          element.style.opacity = '0';
         }, 200);
       });
     });
