@@ -110,12 +110,6 @@ function type() {
     setTimeout(type, 100); // Adjust the typing speed here (in milliseconds)
   } else {
     cursor.style.display = 'none'; // Hide the cursor when typing is complete
-
-    // Wait for 3 seconds (3000 milliseconds) before changing the opacity
-    setTimeout(() => {
-      const element = document.querySelector('.typing-animation');
-      element.style.opacity = '0';
-    }, 3000);
   }
 }
 
@@ -144,7 +138,7 @@ type();
         window.setTimeout(function () {
           const element = document.querySelector('.typing-animation');
           element.style.opacity = '0';
-        }, 200);
+        }, 3000);
       });
     });
   </script>
