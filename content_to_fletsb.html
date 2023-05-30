@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1.0, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function downloadFile(content, filename, mimeType) {
+  // Create a Blob object from the content
+  const blob = new Blob([content], { type: mimeType });
+
+  // Create a temporary URL for the Blob
+  const url = URL.createObjectURL(blob);
+
+  // Create a link element
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+
+  // Simulate a click event to trigger the download
+  const clickEvent = new MouseEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: false
+  });
+  link.dispatchEvent(clickEvent);
+
+  // Cleanup the temporary URL
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 100);
+}
+
+// Retrieve the content from URL search parameters
+const urlSearchParams = new URLSearchParams(window.location.search);
+const encodedContent = urlSearchParams.get('content');
+const decodedContent = decodeURIComponent(encodedContent);
+
+// Usage example
+const filename = "filename.txt";
+const mimeType = "text/plain";
+
+downloadFile(decodedContent, filename, mimeType);
+
+</script>
+</html>
